@@ -58,7 +58,7 @@ public class ReviewService {
 
     public boolean existReviewByBook(String userEmail, Long bookId) throws NotFoundException {
         if (bookRepository.findById(bookId).isEmpty()) {
-            throw new NotFoundException("Book doesnt exist");
+            throw new NotFoundException("Book doesn`t exist");
         }
         return reviewRepository.findByUserEmailAndBook_Id(userEmail, bookId).isPresent();
     }

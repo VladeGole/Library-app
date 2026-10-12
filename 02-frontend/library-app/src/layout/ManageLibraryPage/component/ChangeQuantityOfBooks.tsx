@@ -1,9 +1,8 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import BookModel from '../../../models/BookModel';
-import { SpinerLoading } from '../../Utils/SpinerLoading';
-import { Pagination } from '../../Utils/Pagination';
-import { ChangeQuantityOfBook } from "./ChangeQuantityOfBook";
+import {SpinerLoading} from '../../Utils/SpinerLoading';
+import {Pagination} from '../../Utils/Pagination';
+import {ChangeQuantityOfBook} from "./ChangeQuantityOfBook";
 
 export const ChangeQuantityOfBooks = () => {
 
@@ -19,7 +18,7 @@ export const ChangeQuantityOfBooks = () => {
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const baseUrl: string = `http://localhost:8080/api/books?page=${currentPage - 1}&size=${booksPerPage}`;
+            const baseUrl: string = `http://localhost:8080/api/v1/books?page=${currentPage - 1}&size=${booksPerPage}`;
 
             const response = await fetch(baseUrl);
 
@@ -29,10 +28,10 @@ export const ChangeQuantityOfBooks = () => {
 
             const responseJson = await response.json();
 
-            const responseData = responseJson._embedded.books;
+            const responseData = responseJson.content;
 
-            setTotalAmountOfBooks(responseJson.page.totalElements);
-            setTotalPages(responseJson.page.totalPages);
+            setTotalAmountOfBooks(responseJson.totalElements);
+            setTotalPages(responseJson.totalPages);
 
             const loadedBooks: BookModel[] = [];
 

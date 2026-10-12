@@ -34,7 +34,7 @@ public class AdminController {
     }
 
     @PatchMapping("/secure/increase/book/{id}")
-    public ResponseEntity<?> increaseBookQuantity(@PathVariable Long id,@AuthenticationPrincipal Jwt jwt) throws AccessDeniedException, SaveFailedException, NotFoundException {
+    public ResponseEntity<?> increaseBookQuantity(@PathVariable Long id, @AuthenticationPrincipal Jwt jwt) throws AccessDeniedException, SaveFailedException, NotFoundException {
         List<String> roles = jwt.getClaimAsStringList("https://library-app.com/roles");
         String admin = !CollectionUtils.isEmpty(roles) ? roles.get(0) : null;
         if (admin == null || !admin.equals("admin")) {
@@ -44,7 +44,7 @@ public class AdminController {
     }
 
     @PatchMapping("/secure/decrease/book/{id}")
-    public ResponseEntity<?> decreaseBookQuantity(@PathVariable Long id,@AuthenticationPrincipal Jwt jwt) throws AccessDeniedException, SaveFailedException, NotFoundException {
+    public ResponseEntity<?> decreaseBookQuantity(@PathVariable Long id, @AuthenticationPrincipal Jwt jwt) throws AccessDeniedException, SaveFailedException, NotFoundException {
         List<String> roles = jwt.getClaimAsStringList("https://library-app.com/roles");
         String admin = !CollectionUtils.isEmpty(roles) ? roles.get(0) : null;
         if (admin == null || !admin.equals("admin")) {
@@ -52,4 +52,16 @@ public class AdminController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(adminService.decreaseQuantityBook(id));
     }
+
+    @DeleteMapping("/secure/{id}")
+    public ResponseEntity<?> deletedBook(@PathVariable Long id, @AuthenticationPrincipal Jwt jwt) throws AccessDeniedException, SaveFailedException, NotFoundException {
+        List<String> roles = jwt.getClaimAsStringList("https://library-app.com/roles");
+        String admin = !CollectionUtils.isEmpty(roles) ? roles.get(0) : null;
+        if (admin == null || !admin.equals("admin")) {
+            throw new AccessDeniedException("Administration page only");
+        }
+        adminService.deleteBookById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Reviews is deleted");
+    }
+
 }

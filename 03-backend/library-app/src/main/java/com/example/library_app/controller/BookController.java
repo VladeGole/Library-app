@@ -5,15 +5,14 @@ import com.example.library_app.core.exception.SaveFailedException;
 import com.example.library_app.dto.BookRequestDto;
 import com.example.library_app.services.BookService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/books")
@@ -40,12 +39,6 @@ public class BookController {
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateBook(@PathVariable Long id, @Valid @RequestBody BookRequestDto bookRequestDto) throws SaveFailedException, NotFoundException {
         return ResponseEntity.status(HttpStatus.OK).body(bookService.updateBookById(bookRequestDto, id));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletedBook(@PathVariable Long id) throws NotFoundException {
-        bookService.deleteBookById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Reviews is deleted");
     }
 
    @PatchMapping("/secure/checkout/{id}")
@@ -113,5 +106,4 @@ public class BookController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(bookService.updateCheckoutBooks(email, bookId));
     }
-
 }

@@ -6,7 +6,6 @@ import com.example.library_app.dto.ReviewRequestDto;
 import com.example.library_app.services.ReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -53,5 +52,4 @@ public class ReviewController {
          reviewService.deleteReviewsById(id);
          ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }

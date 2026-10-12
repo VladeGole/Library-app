@@ -1,11 +1,11 @@
-import { use, useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import BookModel from "../../models/BookModel";
-import { StarsReview } from "../Utils/StarsReview";
-import { SpinerLoading } from "../Utils/SpinerLoading";
+import {StarsReview} from "../Utils/StarsReview";
+import {SpinerLoading} from "../Utils/SpinerLoading";
 import Review from "../../models/Review";
-import { LatestReview } from "./component/LatestReview";
-import { CheckoutAndReviewsBox } from "./component/CheckoutAndReviewsBox";
-import { useAuth0 } from "@auth0/auth0-react";
+import {LatestReview} from "./component/LatestReview";
+import {CheckoutAndReviewsBox} from "./component/CheckoutAndReviewsBox";
+import {useAuth0} from "@auth0/auth0-react";
 import ReviewRequestModel from "../../models/ReviewRequestModel";
 
 export const BookCheckoutPage = () => {
@@ -26,10 +26,10 @@ export const BookCheckoutPage = () => {
     const [isCheckoutLoading, setIsCheckoutLoading] = useState(true);
 
     // Review left check
-    const[isReviewLeft, setIsReviewLeft] = useState(false);
-    const[isLoadingReviewLeft, setIsLoadingReviewLeft] = useState(true);
+    const [isReviewLeft, setIsReviewLeft] = useState(false);
+    const [isLoadingReviewLeft, setIsLoadingReviewLeft] = useState(true);
 
-    const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
 
     const bookId = (window.location.pathname).split("/")[2];
 
@@ -137,7 +137,7 @@ export const BookCheckoutPage = () => {
         fetchCountLoaned().catch((error: any) => {
             setHttpError(error.message);
         })
-    }, [isAuthenticated, getAccessTokenSilently, ])
+    }, [isAuthenticated, getAccessTokenSilently,])
 
     useEffect(() => {
         const fetchIsCheckout = async () => {
@@ -170,24 +170,24 @@ export const BookCheckoutPage = () => {
     useEffect(() => {
         const fetchIsReviewLeft = async () => {
             if (isAuthenticated) {
-            const accessToken = await getAccessTokenSilently();
-            const url = `http://localhost:8080/api/v1/reviews/secure/exists/book/${bookId}`;
+                const accessToken = await getAccessTokenSilently();
+                const url = `http://localhost:8080/api/v1/reviews/secure/exists/book/${bookId}`;
 
-            const requestOptions = {
-                "method" : "GET",
-                headers : {
-                "Authorization": `Bearer ${accessToken}`,
-                "Content-Type": "application/json"
+                const requestOptions = {
+                    "method": "GET",
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Content-Type": "application/json"
+                    }
                 }
-            }
-            const response = await fetch(url, requestOptions);
+                const response = await fetch(url, requestOptions);
 
-            if (!response.ok) {
-                throw new Error("Something went wrong");
-            }
+                if (!response.ok) {
+                    throw new Error("Something went wrong");
+                }
 
-            const responseJson = await response.json();
-            setIsReviewLeft(responseJson)
+                const responseJson = await response.json();
+                setIsReviewLeft(responseJson)
             }
             setIsLoadingReviewLeft(false);
         }
@@ -242,7 +242,7 @@ export const BookCheckoutPage = () => {
 
     if (isLoading || isLoadingCountLoaned || isLoadingReviewLeft || isCheckoutLoading) {
         return (
-            <SpinerLoading />
+            <SpinerLoading/>
         );
     }
 
@@ -258,9 +258,10 @@ export const BookCheckoutPage = () => {
                 <div className="row mt-5">
                     <div className="col-lg-2">
                         {book?.image ?
-                            <img src={book.image} width={226} height={349} alt="#" />
+                            <img src={book.image} width={226} height={349} alt="#"/>
                             :
-                            <img src={require("../../Image/BookImage/book-luv2code-1000.png")} width={226} height={349} alt="#" />
+                            <img src={require("../../Image/BookImage/book-luv2code-1000.png")} width={226} height={349}
+                                 alt="#"/>
                         }
                     </div>
                     <div className="col-lg-4 container">
@@ -268,14 +269,15 @@ export const BookCheckoutPage = () => {
                             <h2>{book?.title}</h2>
                             <h4 className="text-primary">{book?.author}</h4>
                             <p className="lead">{book?.description}</p>
-                            <StarsReview rating={totalStars} size={32} />
+                            <StarsReview rating={totalStars} size={32}/>
                         </div>
                     </div>
                     <CheckoutAndReviewsBox book={book} mobile={false} currentLoanedCount={countLoaned}
-                        isCheckout={isCheckout} isAuthenticated={isAuthenticated} checkoutFun={checkoutBook} isReviewLeft={isReviewLeft}
-                        submitReview={submitReview}/>
+                                           isCheckout={isCheckout} isAuthenticated={isAuthenticated}
+                                           checkoutFun={checkoutBook} isReviewLeft={isReviewLeft}
+                                           submitReview={submitReview}/>
                 </div>
-                <hr />
+                <hr/>
                 <div>
                     <LatestReview reviews={review} mobile={false} bookId={book?.id}/>
                 </div>
@@ -284,21 +286,28 @@ export const BookCheckoutPage = () => {
             <div className="container d-lg-none mt-1">
                 <div className="d-flex justify-content-center align-items-center">
                     {book?.image ?
-                        <img src={book.image} width={200} height={300} alt="#" />
+                        <img src={book.image} width={200} height={300} alt="#"/>
                         :
-                        <img src={require("../../Image/BookImage/book-luv2code-1000.png")} width={100} height={100} alt="#" />
+                        <img src={require("../../Image/BookImage/book-luv2code-1000.png")} width={100} height={100}
+                             alt="#"/>
                     }
                 </div>
                 <div className="m-3">
                     <h2>{book?.title}</h2>
                     <h4 className="text-primary">{book?.author}</h4>
                     <p className="lead">{book?.description}</p>
-                    <StarsReview rating={totalStars} size={32} />
+                    <StarsReview rating={totalStars} size={32}/>
                 </div>
-                <div className="mb-2">
+                <CheckoutAndReviewsBox book={book} mobile={true} currentLoanedCount={countLoaned}
+                                       isCheckout={isCheckout} isAuthenticated={isAuthenticated}
+                                       checkoutFun={checkoutBook} isReviewLeft={isReviewLeft}
+                                       submitReview={submitReview}/>
+                <hr/>
+                <div>
                     <LatestReview reviews={review} mobile={true} bookId={book?.id}/>
                 </div>
             </div>
         </div>
     );
 }
+         

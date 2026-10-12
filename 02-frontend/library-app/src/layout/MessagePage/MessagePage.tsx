@@ -1,15 +1,17 @@
-import { Message } from "./component/Message"
-import { PostNewMessage } from "./component/PostNewMessage"
+import {Message} from "./component/Message"
+import {PostNewMessage} from "./component/PostNewMessage"
 
 export const MessagePage = () => {
     return (
         <div className="m-5">
             <nav className="nav nav-tabs" id="myTab" role="tablist">
-                <button className="nav-item nav-link active" id="nav-question" data-bs-toggle="tab" data-bs-target="#question" role="tab" aria-selected="true">
+                <button className="nav-item nav-link active" id="nav-question" data-bs-toggle="tab"
+                        data-bs-target="#question" role="tab" aria-selected="true">
                     Submit Question
                 </button>
-                <button className="nav-item nav-link" id="nav-response" data-bs-toggle="tab" data-bs-target="#response" role="tab" aria-selected="false">
-                    Q/A response/panding
+                <button className="nav-item nav-link" id="nav-response" data-bs-toggle="tab" data-bs-target="#response"
+                        role="tab" aria-selected="false">
+                    Q/A response/pending
                 </button>
             </nav>
             <div className="tab-content" id="nav-tabContent">
@@ -21,5 +23,5 @@ export const MessagePage = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }

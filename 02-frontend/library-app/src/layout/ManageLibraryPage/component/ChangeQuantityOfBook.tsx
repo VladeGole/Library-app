@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import BookModel from "../../../models/BookModel";
-import { useAuth0 } from "@auth0/auth0-react";
+import {useAuth0} from "@auth0/auth0-react";
 
 export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }> = (props) => {
 
-    const { getAccessTokenSilently } = useAuth0();
+    const {getAccessTokenSilently} = useAuth0();
     const [quantity, setQuantity] = useState<number>(0);
     const [remaining, setRemaining] = useState<number>(0);
 
@@ -17,10 +17,10 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }, []);
 
     async function increaseQuantity() {
-        const url = `http://localhost:8080/api/admin/secure/increase/book/quantity?bookId=${props.book?.id}`;
+        const url = `http://localhost:8080/api/v1/admins/secure/increase/book/${props.book?.id}`;
         const accessToken = await getAccessTokenSilently();
         const requestOptions = {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
@@ -36,10 +36,10 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }
 
     async function decreaseQuantity() {
-        const url = `http://localhost:8080/api/admin/secure/decrease/book/quantity?bookId=${props.book?.id}`;
+        const url = `http://localhost:8080/api/v1/admins/secure/decrease/book/${props.book?.id}`;
         const accessToken = await getAccessTokenSilently();
         const requestOptions = {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
@@ -55,21 +55,29 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }
 
     async function deleteBook() {
-        const url = `http://localhost:8080/api/admin/secure/delete/book?bookId=${props.book?.id}`;
-        const accessToken = await getAccessTokenSilently();
-        const requestOptions = {
-            method: 'DELETE',
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
-            }
-        };
+        try {
+            console.log('1 start');
+            const accessToken = await getAccessTokenSilently();
+            console.log('2 token ok');
 
-        const updateResponse = await fetch(url, requestOptions);
-        if (!updateResponse.ok) {
-            throw new Error('Something went wrong!');
+            const url = `http://localhost:8080/api/v1/admins/secure/${props.book?.id}`;
+            const updateResponse = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('3 status:', updateResponse.status);
+
+            if (!updateResponse.ok) {
+                throw new Error(`Status ${updateResponse.status}`);
+            }
+            props.deleteBook();
+        } catch (e: any) {
+            console.error('Greška:', e);
+            alert('Brisanje nije uspelo: ' + e.message);
         }
-        props.deleteBook();
     }
 
     return (
@@ -78,18 +86,18 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
                 <div className='col-md-2'>
                     <div className='d-none d-lg-block'>
                         {props.book.image ?
-                            <img src={props.book.image} width='123' height='196' alt='Book' />
+                            <img src={props.book.image} width='123' height='196' alt='Book'/>
                             :
-                            <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')}
-                                 width='123' height='196' alt='Book' />
+                            <img src={require('./../../../Image/BookImage/book-luv2code-1000.png')}
+                                 width='123' height='196' alt='Book'/>
                         }
                     </div>
                     <div className='d-lg-none d-flex justify-content-center align-items-center'>
                         {props.book.image ?
-                            <img src={props.book.image} width='123' height='196' alt='Book' />
+                            <img src={props.book.image} width='123' height='196' alt='Book'/>
                             :
-                            <img src={require('./../../../Images/BooksImages/book-luv2code-1000.png')}
-                                 width='123' height='196' alt='Book' />
+                            <img src={require('./../../../Image/BookImage/book-luv2code-1000.png')}
+                                 width='123' height='196' alt='Book'/>
                         }
                     </div>
                 </div>

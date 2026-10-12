@@ -22,6 +22,9 @@ public class AdminService {
     @Autowired
     private BookMapper bookMapper;
 
+    @Autowired
+    private BookService bookService;
+
     @Transactional(rollbackFor = {SaveFailedException.class})
     public BookResponseDto createBook(BookRequestDto bookRequestDto) throws SaveFailedException {
 
@@ -67,5 +70,12 @@ public class AdminService {
             throw new SaveFailedException(e.getMessage());
         }
         return bookMapper.toDto(book);
+    }
+
+    @Transactional(rollbackFor = {NotFoundException.class})
+    public void deleteBookById(Long id) throws NotFoundException {
+        Book book = bookService.getBookById(id);
+        book.setDeleted(true);
+        bookRepository.save(book);
     }
 }

@@ -12,7 +12,6 @@ import com.example.library_app.repository.BookRepository;
 import com.example.library_app.repository.CheckoutRepository;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
-import org.hibernate.annotations.DialectOverride;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -81,13 +80,6 @@ public class BookService {
             throw new SaveFailedException(e.getMessage());
         }
         return bookMapper.toDto(book);
-    }
-
-    @Transactional(rollbackFor = {NotFoundException.class})
-    public void deleteBookById(Long id) throws NotFoundException {
-        Book book = getBookById(id);
-        book.setDeleted(true);
-        bookRepository.save(book);
     }
 
     @Transactional(rollbackFor = { NotFoundException.class})

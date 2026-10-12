@@ -62,7 +62,8 @@ public class MessageService {
             throw new IllegalArgumentException("User email not be must empty ");
         }
 
-        Message message = messageRepository.findById(adminMessageRequestDto.getId()).orElseThrow(() -> new NotFoundException("Message with" + adminMessageRequestDto.getId() + "doesnt exist"));
+        Message message = messageRepository.findById(adminMessageRequestDto.getId()).orElseThrow(() ->
+                new NotFoundException("Message with" + adminMessageRequestDto.getId() + "doesnt exist"));
         message.setAdminEmail(userEmail);
         message.setResponse(adminMessageRequestDto.getResponse());
         message.setClose(true);

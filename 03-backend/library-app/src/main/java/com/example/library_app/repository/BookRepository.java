@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    @Query("SELECT b FROM Book b WHERE (:search is NULL OR LOWER(b.title) LIKE LOWER(CONCAT('%', :search, '%'))"
+    @Query("SELECT b FROM Book b WHERE b.deleted=false AND (:search is NULL OR LOWER(b.title) LIKE LOWER(CONCAT('%', :search, '%'))"
         + " OR LOWER(b.category) LIKE LOWER(CONCAT('%', :search, '%')))")
     Page<Book> findAllWithSearch(String search, Pageable pageable);
 }
