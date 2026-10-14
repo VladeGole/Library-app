@@ -44,8 +44,10 @@ Single book page - on desktop and on mobile
 Shows the cover, title, author, description, ratings and the number of available copies. This is where a book is rented, and below it are reviews from other readers. A signed-in user can also leave their own rating and comment.
 
 Mobile:
+
 <img width="462" height="875" alt="checkoutmobile" src="https://github.com/user-attachments/assets/225a8347-3ebb-4e0d-b52f-fdd07e649b89" />
 Desktop:
+
 <img width="1002" height="716" alt="bookcheckout" src="https://github.com/user-attachments/assets/75019d06-5799-4344-8604-83585558c3b0" />
 
 My shelf (rented books and history)
