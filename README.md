@@ -26,23 +26,25 @@ The entry point of the app: a title, a slogan, a button to explore the most popu
 
 
 Navigation – on desktop and on mobile
-
 The app adapts to the screen size. On smaller screens the menu turns into a "hamburger" button.
+<img width="1904" height="362" alt="navbar" src="https://github.com/user-attachments/assets/e4f21823-7634-47b4-93be-056145bd90c0" />
+<img width="654" height="473" alt="navbar mobile" src="https://github.com/user-attachments/assets/d485701b-f306-4da8-8f39-bdac5d844d3a" />
 
-Desktop	Mobile
-Show Image	Show Image
+
 Search and book catalogue
 
 The user types part of a title, picks a category (e.g. FE, BE, Data, DevOps) and gets a list of results. Results are shown page by page (pagination), so the site stays fast even with a large number of books.
 
-Show Image Show Image
+<img width="915" height="759" alt="search" src="https://github.com/user-attachments/assets/f6b5e6de-5aa4-406f-86c3-f678d1a6512c" />
 
-Single book page
+
+Single book page - on desktop and on mobile
 
 Shows the cover, title, author, description, ratings and the number of available copies. This is where a book is rented, and below it are reviews from other readers. A signed-in user can also leave their own rating and comment.
 
-Desktop	Mobile
-Show Image	Show Image
+<img width="462" height="875" alt="checkoutmobile" src="https://github.com/user-attachments/assets/225a8347-3ebb-4e0d-b52f-fdd07e649b89" />
+<img width="1002" height="716" alt="bookcheckout" src="https://github.com/user-attachments/assets/75019d06-5799-4344-8604-83585558c3b0" />
+
 My shelf (rented books and history)
 
 Each member's personal space. Tabs separate current loans from the history of all returned books. By clicking Manage Loan, the user can:
@@ -50,19 +52,22 @@ Each member's personal space. Tabs separate current loans from the history of al
 🔁 extend the loan for another 7 days (Renew loan for 7 days),
 📥 return the book (Return book).
 
-Show Image Show Image
+<img width="1050" height="503" alt="shelfloans" src="https://github.com/user-attachments/assets/e20104d3-4712-4746-a23a-5e8286d0e7bd" />
+
 
 Messages and support
 
 If a user has a question or a problem, they can write to the administrators. Next to each question it shows whether a reply has arrived or is still pending (Pending response from administrator).
 
-Show Image
+<img width="1906" height="609" alt="message" src="https://github.com/user-attachments/assets/eaf01cc9-c290-48bd-8100-f1024ea63d79" />
+
 
 Sign-in
 
 Sign-in is handled through an Auth0 page – with an e-mail and password or a Google account. Protected pages (shelf, messages, administration) are not available to signed-out users; the system sends them to the sign-in page automatically.
 
-Show Image
+<img width="1314" height="865" alt="loginvisible" src="https://github.com/user-attachments/assets/3fa0a502-f961-4e1d-98a4-c983f40d36c3" />
+
 
 Admin panel
 
@@ -72,7 +77,10 @@ Add a new book – title, author, category, description, quantity and cover imag
 Change quantity and delete – increase or decrease the number of copies and remove a book from the catalogue.
 User messages – view questions and send replies.
 
-Show Image Show Image
+<img width="1132" height="339" alt="messageadmin" src="https://github.com/user-attachments/assets/b6c962ea-5f25-47e6-ac7e-99d0e2412a35" />
+<img width="1445" height="746" alt="managelibraryapp" src="https://github.com/user-attachments/assets/39f86719-2be1-4813-833f-13a114ec135d" />
+<img width="1061" height="889" alt="changequantity" src="https://github.com/user-attachments/assets/79f867c8-1d17-4f4d-b55c-d4354b5ecbfa" />
+
 
 ⚙️ How it all works (in plain words)
 
@@ -95,8 +103,6 @@ checkout	Current loans: who rented which book and until when
 history	Archive of returned books
 review	Ratings (1–5) and comments
 messages	User questions and administrator replies
-
-Show Image
 
 🧰 Technologies used
 Part	Technology
