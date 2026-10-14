@@ -29,6 +29,7 @@ Navigation – on desktop and on mobile
 
 The app adapts to the screen size. On smaller screens the menu turns into a "hamburger" button.
 <img width="1904" height="362" alt="navbar" src="https://github.com/user-attachments/assets/e4f21823-7634-47b4-93be-056145bd90c0" />
+
 <img width="654" height="473" alt="navbar mobile" src="https://github.com/user-attachments/assets/d485701b-f306-4da8-8f39-bdac5d844d3a" />
 
 
@@ -46,6 +47,7 @@ Shows the cover, title, author, description, ratings and the number of available
 Mobile:
 
 <img width="462" height="875" alt="checkoutmobile" src="https://github.com/user-attachments/assets/225a8347-3ebb-4e0d-b52f-fdd07e649b89" />
+
 Desktop:
 
 <img width="1002" height="716" alt="bookcheckout" src="https://github.com/user-attachments/assets/75019d06-5799-4344-8604-83585558c3b0" />
@@ -80,9 +82,11 @@ Admin panel
 Only a user with the admin role can see it; everyone else is sent back to the home page. The panel has three parts:
 
 Add a new book – title, author, category, description, quantity and cover image.
+
 <img width="1445" height="746" alt="managelibraryapp" src="https://github.com/user-attachments/assets/39f86719-2be1-4813-833f-13a114ec135d" />
 
 Change quantity and delete – increase or decrease the number of copies and remove a book from the catalogue.
+
 <img width="1061" height="889" alt="changequantity" src="https://github.com/user-attachments/assets/79f867c8-1d17-4f4d-b55c-d4354b5ecbfa" />
 
 User messages – view questions and send replies.
